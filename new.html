@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Live Chat</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f2f5;
+    }
+    .chat-container {
+      width: 100%;
+      max-width: 400px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .chat-header {
+      background-color: #007bff;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .message {
+      max-width: 70%;
+      padding: 8px 12px;
+      border-radius: 12px;
+      line-height: 1.4;
+    }
+    .sent {
+      background-color: #007bff;
+      color: white;
+      align-self: flex-end;
+    }
+    .received {
+      background-color: #e4e6eb;
+      color: black;
+      align-self: flex-start;
+    }
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #ccc;
+    }
+    .chat-input input {
+      flex: 1;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+    }
+    .chat-input button {
+      padding: 8px 12px;
+      margin-left: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .chat-input button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">Live Chat</div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="chat-input">
+      <input type="text" id="messageInput" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script>
+    // Load messages from local storage
+    function loadMessages() {
+      const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+      const chatMessages = document.getElementById('chatMessages');
+      chatMessages.innerHTML = '';
+      messages.forEach(msg => displayMessage(msg.text, msg.type));
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Save message to local storage
+    function saveMessage(message, type) {
+      const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+      messages.push({ text: message, type: type });
+      localStorage.setItem('chatMessages', JSON.stringify(messages));
+    }
+
+    // Display a message in the chat
+    function displayMessage(message, type) {
+      const chatMessages = document.getElementById('chatMessages');
+      const messageElement = document.createElement('div');
+      messageElement.classList.add('message', type);
+      messageElement.textContent = message;
+      chatMessages.appendChild(messageElement);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    // Send a new message
+    function sendMessage() {
+      const messageInput = document.getElementById('messageInput');
+      const message = messageInput.value.trim();
+      if (message) {
+        displayMessage(message, 'sent');
+        saveMessage(message, 'sent');
+        messageInput.value = '';
+
+        // Simulate a reply after 1s
+        setTimeout(() => {
+          const reply = "Got it: " + message;
+          displayMessage(reply, 'received');
+          saveMessage(reply, 'received');
+        }, 1000);
+      }
+    }
+
+    // Handle Enter key press
+    document.getElementById('messageInput').addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') {
+        sendMessage();
+      }
+    });
+
+    // Load messages on page load
+    window.onload = loadMessages;
+  </script>
+</body>
+</html>

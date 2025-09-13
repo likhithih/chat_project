@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tab Talk</title>
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+ <main class="chatbox">
+
+    <header class="top">
+
+      <div class="title">
+        <div class="dot"></div>
+        <div>
+          <h1 id="chatTitle">Live Chat</h1>
+        </div>
+      </div>
+
+      <div class="controls">
+        <button id="changeName" class="btn">Change name</button>
+        <button id="clearBtn" class="btn">Clear chat</button>
+      </div>
+    </header>
+
+    <section class="messages" id="messages"></section>
+
+    <div class="inputRow">
+      <input id="messageInput" type="text" placeholder="Type a message…"  />
+      <button id="sendBtn" class="sendBtn">Send</button>
+    </div>
+
+    <div class="small">
+      <div id="status">Status: <span id="statusText"></span></div>
+      <div>Username: <b id="nameBadge"></b></div>
+    </div>
+  </main>
+
+  <script src="chat.js"></script>
+</body>
+</html>

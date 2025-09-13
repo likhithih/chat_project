@@ -1,0 +1,146 @@
+:root {
+  --bg:#0f1826;
+  --me:#02090c9d;
+  --other:#f1f2f39f;
+  --accent:#06b6d4;
+  --muted:#f6f6f7;
+}
+
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #121b2f, #1c0945);
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100vh;
+  padding:20px;
+}
+
+.chatbox {
+  width:100%;
+  max-width:900px;
+  height:80vh;
+  display:flex;
+  flex-direction:column;
+  gap:20px;
+  background:linear-gradient(160deg, rgba(0, 0, 0, 0.404),rgba(128, 128, 128, 0.432),rgba(13, 11, 11, 0.432));
+  border-radius:12px;
+  padding:16px;
+}
+
+.top {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.title {
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+#chatTitle{
+  width: 150px;
+}
+.dot {
+  width:12px; 
+  height:12px; 
+  border-radius:50%;
+  background:var(--accent);
+}
+.controls{
+  display: flex;
+  gap: 10px;
+  padding: 0px;
+}
+.btn {
+  border:2px solid rgba(0, 0, 0, 0.336);
+  background:rgba(0, 0, 0, 0.466);
+  color:var(--muted);
+  padding:10px 10px;
+  font-size: 20px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.btn:hover { 
+  color:black;
+  font-size: larger;
+  font-weight: 600;
+  background-color: #06b6d4;
+ }
+
+.messages {
+  flex:1;
+  overflow-y:auto;
+  padding:10px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.msg {
+  max-width:70%;
+  padding:15px 12px;
+  border-radius:12px;
+  font-size:17px;
+  font-weight: 500;
+}
+.msg.me {
+  align-self:flex-end;
+  background:var(--me);
+}
+.msg.other {
+  align-self:flex-start;
+  background:rgba(12, 0, 0, 0.69);
+  color: white;
+}
+.meta {
+  font-size:14px;
+  color:var(--muted);
+  margin-bottom:4px;
+  padding-bottom: 10px;
+}
+.inputRow {
+  display:flex;
+  gap:8px;
+}
+.inputRow input {
+  flex-grow:1;
+  padding:10px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,0.2);
+  background:transparent;
+  color:inherit;
+}
+.sendBtn {
+  background:var(--accent);
+  border:none;
+  color:white;
+  padding:10px 14px;
+  border-radius:10px;
+  cursor:pointer;
+}
+
+.small {
+  display:flex;
+  justify-content:space-between;
+  font-size:17px;
+  padding: 5px 30px;
+  color:white;
+}
+.small div:hover{
+  color: var(--accent);
+  font-size: larger;
+  font-weight: 600;
+}
+
+#messageInput{
+  height: 40px;
+  padding: 10px;
+}
+#messageInput::placeholder {
+  color:white;
+  opacity:1;
+font-size: larger;}
